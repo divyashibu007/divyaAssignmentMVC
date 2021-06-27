@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Cart </title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="text-right">
+        <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.Name}]]</b>
+            </p>
+            <input type="submit" value="Sign Out" />
+        </form>
+    </div>
+    <div class="text-left">
+        <div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px;">
+            <a th:href="@{/user_list}">Users</a> | &nbsp;
+            <a th:href="@{/product_list}">Product</a> |
+            <a th:href="@{/cart_list}">Cart</a> |
+
+
+        </div>
+    </div>
+    <div align="center">
+        <h3>Cart List</h3>
+        <a href="new_cart"> Add Cart </a>
+        <br/><br/>
+        <div class="text-center">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Fist Name</th>
+                    <th>Last Name</th>
+                    <th>Email id</th>
+                    <th> Mobile Number
+                    <th>Status</th>
+                    <th>Products</th>
+                    <th>Actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="carts : ${listCarts}">
+                    <td th:text="${carts.id}">Cart ID</td>
+                    <td>
+                        <table border="1" style="width: 100%;">
+                            <tbody>
+                            <tr th:if="${ not#lists.isEmpty(carts.userList)}">
+                                <td th:each="user : ${carts.userList}"
+                                    th:text="${user.userName}">UserName<td/>
+                            <tr/>
+                            <tr th:if="${#lists.isEmpty(carts.userList)}">
+                                Nil
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td th:text="${carts.firstName}">First Name</td>
+                    <td th:text="${carts.lastName}">Last Name</td>
+                    <td th:text="${carts.phoneNumber}">Mobile NUmber</td>
+                    <td th:text="${carts.emailId}">Email Id</td>
+                    <td th:text="${carts.status}">Status</td>
+                    <td>
+                        <table border="1" style="width: 100%;">
+                            <tbody>
+                            <tr th:if="${ not#lists.isEmpty(carts.productList)}">
+                                <td th:each="products : ${carts.productList}"
+                                    th:text="${products.name}">Products<td/>
+                            <tr/>
+                            <tr th:if="${#lists.isEmpty(carts.productList)}">
+                                Nil
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <a th:href="@{'/load_edit_cart/' + ${carts.id}}">Edit</a>
+
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>
