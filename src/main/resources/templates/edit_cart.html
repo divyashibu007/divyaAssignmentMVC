@@ -13,24 +13,25 @@
     <h1>Add to Cart</h1>
     <br />
     <form  th:action="@{/save_cart}" th:object="${carts}"
-          method="post">
+           method="post">
 
         <table border="0" cellpadding="10">
-           
-       
+
+
             <tr>
                 <td>Cart ID:</td>
                 <td><input type="text" th:field="*{id}"  readonly="readonly" /></td>
             </tr>
+
             <tr>
                 <td>First Name:</td>
-            <td><input type="text" th:field="*{firstName}"  readonly="readonly" /></td>
+                <td><input type="text" th:field="*{firstName}"  readonly="readonly" /></td>
             </tr>
             <tr>
                 <td>Last Name:</td>
                 <td><input type="text" th:field="*{lastName}"  readonly="readonly" /></td>
             </tr>
-          
+
             <tr>
                 <td>Email Id:</td>
                 <td><input type="email" th:field="*{emailId}"  readonly="readonly" /></td>
@@ -39,20 +40,34 @@
                 <td>Phone Number:</td>
                 <td><input type="text" pattern="^\d{10}$" th:field="*{phoneNumber}"  readonly="readonly" /></td>
             </tr>
-        
+
+            <tr>
+                <td>Select User</td>
+                <td>
+                <td>
+                    <select name="userList" class="form-control select-checkbox"   >
+                        <option th:each="user : ${userList}"
+                                th:value="${user.id}"
+                                th:text="${user.userName}   "></option>
+                    </select>
+
+                </td>
+                </td>
+            </tr>
+
             <tr>
                 <td>Status:</td>
-                
-                
+
+
                 <td><input type="radio" th:field="*{status}" class="form-control" value= "On Cart"/> Add to Cart </td>
-                  <td><input type="radio" th:field="*{status}" class="form-control" value= "Purchased"/> Purchase </td>
-               
-             
+                <td><input type="radio" th:field="*{status}" class="form-control" value= "Purchased"/> Purchase </td>
+
+
             </tr>
             <tr>
                 <td>Select Products</td>
                 <td>
-                    <td>
+                <td>
                     <select name="productList" class="form-control select-checkbox" multiple>
                         <option th:each="product : ${productList}"
                                 th:value="${product.id}"
@@ -62,9 +77,9 @@
                 </td>
             </tr>
             </tr>
-                <tr>
+            <tr>
                 <td colspan="2"><button type="submit">Save</button> </td>
-      
+
             </tr>
         </table>
     </form>
