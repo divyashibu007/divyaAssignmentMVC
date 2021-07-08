@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Edit Account</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div align="center">
+        <h1>Update Account</h1>
+    </div>
+    <form  th:action="@{/process_edit_account}" th:object="${account}"
+           method="post" style="max-width: 600px; margin: 0 auto;">
+
+        <div class="m-3">
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">ID: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{id}" class="form-control" readonly="readonly" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Type: </label>
+                <div class="col-8">
+                   
+
+                    <select th:field="*{type}" class="form-control">
+                        <option value = "Savings"> Savings</option>
+                        <option value = "Deposit"> Deposit</option>
+                        <option value = "Student"> Student</option>
+                        
+                    </select>
+                </div>
+            </div>
+           
+        </div>
+        <div class="form-group row">
+            <label class="col-4 col-form-label"> Account Number: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{accNo}" class="form-control" autocomplete="off"
+                       required minlength="2" maxlength="20"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label"> Account Name: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{accName}" class="form-control" autocomplete="off"
+                       required minlength="2" maxlength="20"/>
+            </div>
+        </div>
+           <div class="form-group row">
+            <label class="col-4 col-form-label"> Bank Name: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{bankName}" class="form-control" autocomplete="off"
+                       required minlength="2" maxlength="20"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-4 col-form-label"> user: </label>
+            <div class="col-8">
+
+                <select class="form-control" th:field="${account.assignedTo.id}">
+                    <option  th:each="user : ${users}"
+                             th:value="${user.id}"
+                             th:text="${user.id}+' : '+${user.userName} " ></option>
+                </select>
+
+            </div>
+        </div>
+       
+
+        <div>
+            <div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="reset" class="btn btn-primary" value="Reset">Reset</button>
+                <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>

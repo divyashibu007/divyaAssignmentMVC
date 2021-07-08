@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Product List</title>
+    <title>Account List</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
@@ -21,35 +21,44 @@
         <div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px;">
             <a th:href="@{/user_list}">Users</a> | &nbsp;
             <a th:href="@{/product_list}">Product</a> |
-<a th:href="@{/cart_list}">Cart</a> |
+           	<a th:href="@{/cart_list}">cart</a> |
+            <a th:href="@{/account_list}">Account</a> |
 
-			 <a th:href="@{/account_list}">Account</a> |
         </div>
     </div>
     <div align="center">
-        <h3>Product List</h3>
-        <a href="new_product">Create New Product</a>
+        <h3>Account Details</h3>
+        <a href="new_account">Create New Account</a>
     </div>
     <div class="text-center">
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
+            <tr>
+                <th>ID</th>
+                <th>TYPE</th>
+               <th>Account Number</th>
+                <th>Account Name</th>
+                <th>Bank Name</th>
+                <th>User Name</th>
+              
+
+                <th>ACTIONS</th>
+            </tr>
             </thead>
             <tbody>
-                <tr th:each="product : ${listProducts}">
-                    <td th:text="${product.id}">Product ID</td>
-                    <td th:text="${product.name}">Name</td>
-                    <td th:text="${product.price}">Price</td>
-                    <td>
-                        <a th:href="@{'/edit_product/' + ${product.id}}">Edit</a>
-                        <a th:href="@{'/delete_product/' + ${product.id}}">Delete</a>
-                    </td>
-                </tr>
+            <tr th:each="account : ${listAccounts}">
+                <td th:text="${account.id}">ID</td>
+                <td th:text="${account.type}">Type</td>
+               <td th:text="${account.accNo}">Account No</td>
+                <td th:text="${account.accName}">Account Name</td>
+                <td th:text="${account.bankName}">BankName</td>
+                <td th:text="${account.assignedTo.userName}">User</td>
+              
+                <td>
+                    <a th:href="@{'/edit_account/' + ${account.id}}">Edit</a>
+                    <a th:href="@{'/delete_account/' + ${account.id}}">Delete</a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

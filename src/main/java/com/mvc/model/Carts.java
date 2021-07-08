@@ -15,10 +15,10 @@ import java.util.List;
 public class Carts {
 
 	private int id;
-	private String firstName;
+	/* private String firstName;
 	private String lastName;
 	private String emailId;
-	private String phoneNumber;
+	private String phoneNumber; */
 	private String status;
 
 	//generated getter setter method
@@ -30,7 +30,7 @@ public class Carts {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getFirstName() {
+	 /* public String getFirstName() {
 		return firstName;
 	}
 	public void setFirstName(String firstName) {
@@ -53,7 +53,7 @@ public class Carts {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
+	} */
 
 
 	public String getStatus() {

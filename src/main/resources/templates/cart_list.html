@@ -23,6 +23,7 @@
             <a th:href="@{/user_list}">Users</a> | &nbsp;
             <a th:href="@{/product_list}">Product</a> |
             <a th:href="@{/cart_list}">Cart</a> |
+			 <a th:href="@{/account_list}">Account</a> |
 
 
         </div>
@@ -36,11 +37,11 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
-                    <th>User Name</th>
-                    <th>Fist Name</th>
+                     <th>User Name</th>
+                    <!-- <th>Fist Name</th>
                     <th>Last Name</th>
                     <th>Email id</th>
-                    <th> Mobile Number
+                    <th> Mobile Number -->
                     <th>Status</th>
                     <th>Products</th>
                     <th>Actions</th>
@@ -50,6 +51,7 @@
                 <tbody>
                 <tr th:each="carts : ${listCarts}">
                     <td th:text="${carts.id}">Cart ID</td>
+                    
                     <td>
                         <table border="1" style="width: 100%;">
                             <tbody>
@@ -63,10 +65,10 @@
                             </tbody>
                         </table>
                     </td>
-                    <td th:text="${carts.firstName}">First Name</td>
+               <!--      <td th:text="${carts.firstName}">First Name</td>
                     <td th:text="${carts.lastName}">Last Name</td>
                     <td th:text="${carts.phoneNumber}">Mobile NUmber</td>
-                    <td th:text="${carts.emailId}">Email Id</td>
+                    <td th:text="${carts.emailId}">Email Id</td>  -->
                     <td th:text="${carts.status}">Status</td>
                     <td>
                         <table border="1" style="width: 100%;">
